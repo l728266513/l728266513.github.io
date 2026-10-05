@@ -2,6 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { randomUUID } = require('node:crypto');
 const Hexo = require('hexo');
 const { stripHTML, unescapeHTML } = require('hexo-util');
 const { dump, JSON_SCHEMA } = require('js-yaml');
@@ -85,7 +86,8 @@ function newPost(title) {
   const parts = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(new Date());
   const file = path.join(POSTS, `${parts.slice(0, 10)}-${title}.md`);
   fs.mkdirSync(POSTS, { recursive: true });
-  fs.writeFileSync(file, '---\n' + dump({ title, date: parts, categories: ['日记'], tags: ['随想'] }, { schema: JSON_SCHEMA }) + '---\n\n', { flag: 'wx', mode: 0o600 });
+  const permalink = `${parts.slice(0, 10).replace(/-/g, '/')}/${randomUUID().slice(0, 12)}/`;
+  fs.writeFileSync(file, '---\n' + dump({ title, date: parts, permalink, categories: ['日记'], tags: ['随想'] }, { schema: JSON_SCHEMA }) + '---\n\n', { flag: 'wx', mode: 0o600 });
   console.log('请编辑本机原文：' + file);
 }
 
