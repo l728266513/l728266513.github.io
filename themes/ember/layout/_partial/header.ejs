@@ -1,0 +1,13 @@
+<header class="site-header shell">
+  <a class="brand" href="<%- url_for('/') %>" aria-label="<%= config.title %> 首页"><span class="brand-mark" aria-hidden="true">e.</span><span class="brand-name"><%= config.title %><span class="brand-caption">日记 · 随想</span></span></a>
+  <nav class="main-nav" aria-label="主导航">
+    <a href="<%- url_for('/') %>" <%- is_home() || is_post() ? 'aria-current="page"' : '' %>>文字</a>
+    <a href="<%- url_for('/archives/') %>" <%- is_archive() || is_tag() ? 'aria-current="page"' : '' %>>归档</a>
+    <a href="<%- url_for('/about/') %>" <%- page.layout === 'about' ? 'aria-current="page"' : '' %>>关于</a>
+  </nav>
+  <div class="header-tools">
+    <button class="search-trigger icon-button" type="button" aria-label="搜索文章" title="搜索文章（Ctrl / ⌘ K）" hidden><%- icon('search') %></button>
+    <span class="tool-divider" aria-hidden="true"></span>
+    <button class="theme-toggle icon-button" type="button" aria-label="切换深色模式" aria-pressed="false" hidden><span class="moon-icon"><%- icon('moon') %></span><span class="sun-icon"><%- icon('sun') %></span></button>
+  </div>
+</header>

@@ -1,0 +1,5 @@
+<footer class="site-footer shell">
+  <div><a class="footer-brand" href="<%- url_for('/') %>"><%= config.title %><span class="small-spark">✳</span></a><p><%= theme.footer_note %></p></div>
+  <div class="footer-right"><div class="visitor-stats" aria-label="访客记录"><span>站点浏览 <strong id="busuanzi_value_site_pv">—</strong></span><span>访客 <strong id="busuanzi_value_site_uv">—</strong></span></div><span>© <%= theme.since %><%= Number(date(Date.now(), 'YYYY')) > theme.since ? '–' + date(Date.now(), 'YYYY') : '' %> <%= config.author %></span><a href="<%- url_for('/atom.xml') %>" class="rss-link" aria-label="订阅 RSS"><%- icon('rss') %><span>RSS</span></a></div>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

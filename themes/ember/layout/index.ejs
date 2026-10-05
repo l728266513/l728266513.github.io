@@ -1,0 +1,22 @@
+<section class="home-intro" aria-labelledby="intro-title">
+  <div class="intro-copy"><div class="eyebrow"><span class="tiny-dot"></span><%= theme.intro_label %></div><h1 id="intro-title" class="intro-quote" data-quotes="<%= JSON.stringify(theme.intro_quotes || []) %>"><span class="quote-primary"><%= (theme.intro_quotes && theme.intro_quotes[0] ? theme.intro_quotes[0].zh : '') %></span><span class="quote-secondary"<% if (!theme.intro_quotes || !theme.intro_quotes[0] || !theme.intro_quotes[0].en) { %> hidden<% } %>><%= theme.intro_quotes && theme.intro_quotes[0] ? (theme.intro_quotes[0].en || '') : '' %></span></h1><% if (theme.intro_description || theme.intro_description_second) { %><p><%= theme.intro_description %><% if (theme.intro_description && theme.intro_description_second) { %><br class="desktop-break"><% } %><%= theme.intro_description_second %></p><% } %><a class="text-link intro-link" href="#entries">翻开日记 <%- icon('arrow') %></a></div>
+  <div class="intro-art" aria-hidden="true">
+    <div class="art-label">THE EVERYDAY JOURNAL</div>
+    <svg class="window-art" viewBox="0 0 320 280" fill="none"><defs><clipPath id="arch"><path d="M67 250V113a93 93 0 0 1 186 0v137Z"/></clipPath></defs><g clip-path="url(#arch)"><path class="art-fill" d="M67 250V113a93 93 0 0 1 186 0v137Z"/><circle class="art-sun" cx="198" cy="94" r="29"/><path class="art-line" d="M39 222c57-67 110-78 162-57s78 29 114 21M22 245c66-65 133-74 192-50s66 27 104 19M43 264c62-45 122-43 173-25s68 15 92 11"/><path class="art-line light" d="M92 57v201m22-221v221m22-232v232m22-235v235m22-233v233m22-224v224m22-207v207"/></g><path class="art-outline" d="M67 250V113a93 93 0 0 1 186 0v137ZM49 250h222"/><path class="art-stem" d="M111 265c-8-39-3-74 12-108m-14 55c-19-1-29-14-29-29 18 2 29 13 29 29Zm2-18c-1-18 9-31 26-35 1 18-9 31-26 35Zm-3 41c13-16 28-18 43-12-11 15-25 19-43 12Z"/></svg>
+    <div class="art-caption"><span>把日子写成文字</span><span>EST. <%= theme.since %></span></div>
+  </div>
+</section>
+
+<div class="home-columns" id="entries">
+  <section class="entries-section" aria-labelledby="entries-title">
+    <div class="section-heading"><h2 id="entries-title"><span class="heading-mark" aria-hidden="true"></span>最近的文字 <span class="count"><%= String(site.posts.length).padStart(2, '0') %></span></h2><span class="section-aside">按时间，慢慢收集</span></div>
+    <div class="post-list"><% page.posts.each(function(post, index) { %><%- partial('_partial/post-card', { post, index }) %><% }); %></div>
+    <% if (page.total > 1) { %><nav class="pagination" aria-label="文章分页"><%- paginator({ prev_text: '← 上一页', next_text: '下一页 →', space: '…', current_class: 'current', show_all: false }) %></nav><% } %>
+  </section>
+  <aside class="home-sidebar">
+    <section class="about-card"><div class="card-eyebrow"><%- icon('leaf') %><span>ABOUT THIS SPACE</span></div><% if (theme.sidebar_title) { %><h2><%= theme.sidebar_title %></h2><% } %><% if (theme.sidebar_description) { %><p><%= theme.sidebar_description %></p><% } %><div class="site-stats"><div><strong><%= String(site.posts.length).padStart(2, '0') %></strong><span>篇文字</span></div><div><strong><%= String(year_groups(site.posts.toArray()).length).padStart(2, '0') %></strong><span>个年份</span></div></div><a class="text-link" href="<%- url_for('/about/') %>">关于这里 <%- icon('diagonal') %></a></section>
+    <section class="sidebar-section"><h2>文字的标签 <span>TAGS</span></h2><div class="tag-list"><% site.tags.sort('name').each(function(tag) { %><a class="tag-pill" href="<%- url_for(tag.path) %>"><span>#</span> <%= tag.name %><small><%= tag.length %></small></a><% }); %></div></section>
+    <section class="sidebar-section archive-preview"><h2>时光的目录 <span>ARCHIVE</span></h2><% year_groups(site.posts.sort('-date').toArray()).forEach(group => { %><a href="<%- url_for('/archives/' + group.year + '/') %>"><span><%= group.year %></span><span><%= group.entries.length %> 篇 <%- icon('arrow') %></span></a><% }); %><a class="all-archives" href="<%- url_for('/archives/') %>">查看全部归档 <%- icon('diagonal') %></a></section>
+    <div class="sidebar-note"><span class="small-spark" aria-hidden="true">✳</span><p>生活有迹可循，<br>因为我们曾经写下。</p></div>
+  </aside>
+</div>

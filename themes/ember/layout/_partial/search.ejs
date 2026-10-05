@@ -1,0 +1,7 @@
+<dialog class="search-dialog" aria-labelledby="search-title" data-index="<%- url_for('/search.json') %>">
+  <div class="search-dialog-heading"><h2 id="search-title">在文字里找一找</h2><button class="close-search icon-button" type="button" aria-label="关闭搜索"><%- icon('close') %></button></div>
+  <form class="search-form" role="search"><label class="visually-hidden" for="search-input">搜索标题或标签</label><%- icon('search') %><input id="search-input" type="search" placeholder="搜索标题或标签…" autocomplete="off" maxlength="120"><kbd>ESC</kbd></form>
+  <p class="search-status" role="status" aria-live="polite">输入关键词，找回某一刻。</p>
+  <ul class="search-results"></ul>
+  <div class="search-dialog-footer">在这里，慢慢找。<span>↵ 打开文章 · ESC 关闭</span></div>
+</dialog>

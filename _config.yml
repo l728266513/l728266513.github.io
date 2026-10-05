@@ -1,0 +1,76 @@
+# 网站信息
+title: Ember
+subtitle: ""
+description: Ember 的日记与随想。
+author: Ember
+language: zh-CN
+timezone: Asia/Shanghai
+url: https://l728266513.github.io
+root: /
+
+# 文章与页面
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+permalink: :year/:month/:day/:title/
+pretty_urls:
+  trailing_index: false
+  trailing_html: true
+new_post_name: :year-:month-:day-:title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: []
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: false
+updated_option: date
+
+# 每页 6 篇；归档展示全部文章
+per_page: 6
+pagination_dir: page
+index_generator:
+  path: ''
+  per_page: 6
+  order_by: -date
+archive_generator:
+  per_page: 0
+  yearly: true
+  monthly: true
+tag_generator:
+  per_page: 0
+
+# 保留日记和诗歌中的手动换行
+marked:
+  gfm: true
+  breaks: true
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+prismjs:
+  enable: false
+theme: ember
+
+# 阅读密码只保存在本机 .private/reading-password.txt，公开源码仅保存加密正文。
+
+# 已有文章沿用旧地址；新增文章自动移除文件名中的日期前缀。
+legacy_posts:
+  2026-06-19-换装.md: 2026/06/19/2026.6.21/
+  2026-06-10-Call-me-if-you-need-me.md: 2026/06/10/2026.6.10/
+  2026-03-19-Keep-it-like-a-secret.md: 2026/03/19/2026.3.19/
+  2026-03-06-红与嘴.md: 2026/03/06/2026.3.6/
+  2026-03-01-Desperado.md: 2026/03/01/2026.3.1/
+  2026-02-20-手.md: 2026/02/20/2026.2.20/
+  2026-02-16-欲望的两面.md: 2026/02/16/2026.2.17/
+  2026-02-15-欲望.md: 2026/02/15/2026.02.15/
+  2026-02-13-2026-02-14.md: 2026/02/13/2026-2-14/
+legacy_aliases:
+  2026/02/13/2026.02.14/: 2026/02/13/2026-2-14/

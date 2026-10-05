@@ -1,0 +1,22 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<% const pageTitle = page.title ? page.title + ' · ' + config.title : (is_tag() ? '# ' + page.tag + ' · ' + config.title : (is_archive() ? '归档 · ' + config.title : config.title + (config.subtitle ? ' · ' + config.subtitle : ''))); %>
+<title><%= pageTitle %></title>
+<meta name="description" content="<%= is_post() ? '这篇日记需要输入密码后阅读。' : config.description %>">
+<meta name="author" content="<%= config.author %>">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f8f7f3">
+<link rel="canonical" href="<%- full_url_for(page.path || '') %>">
+<link rel="icon" type="image/svg+xml" href="<%- url_for('/images/favicon.svg') %>">
+<link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="<%- url_for('/atom.xml') %>">
+<meta property="og:site_name" content="<%= config.title %>">
+<meta property="og:type" content="<%= is_post() ? 'article' : 'website' %>">
+<meta property="og:title" content="<%= pageTitle %>">
+<meta property="og:description" content="<%= is_post() ? '这篇日记需要输入密码后阅读。' : config.description %>">
+<meta property="og:url" content="<%- full_url_for(page.path || '') %>">
+<meta property="og:locale" content="zh_CN">
+<% if (is_post()) { %><meta property="article:published_time" content="<%= page.date.toISOString() %>"><meta property="article:modified_time" content="<%= page.updated.toISOString() %>"><% } %>
+<script>
+  (() => { let preference; try { preference = localStorage.getItem('ember-theme'); } catch (_) {} const dark = preference === 'dark' || (!preference && matchMedia('(prefers-color-scheme: dark)').matches); document.documentElement.dataset.theme = dark ? 'dark' : 'light'; document.querySelector('meta[name="theme-color"]').content = dark ? '#1c2421' : '#f8f7f3'; })();
+</script>
+<link rel="stylesheet" href="<%- url_for('/css/style.css') %>">

@@ -1,0 +1,16 @@
+node_modules/
+public/
+db.json
+.deploy_git/
+.idea/
+.vscode/
+.npm-cache/
+.blog-backups/
+.private/
+.env
+.env.*
+!.env.example
+source/_drafts/
+*.log
+.DS_Store
+Thumbs.db

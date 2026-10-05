@@ -1,0 +1,5 @@
+<article class="post-card">
+  <div class="post-date"><time datetime="<%= post.date.toISOString() %>"><span><%= date(post.date, 'DD') %></span><span><%= date(post.date, 'YYYY.MM') %></span></time></div>
+  <div class="post-card-copy"><div class="post-card-meta"><span><%= post.categories.length ? post.categories.first().name : '日记' %></span><span class="meta-dot">·</span><span><%= reading_stats(post).minutes %> 分钟阅读</span><% if (page.current === 1 && index === 0) { %><span class="latest-badge">最新</span><% } %></div><h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3><% if (post.tags.length) { %><div class="post-card-tags"><% post.tags.each(function(tag) { %><a href="<%- url_for(tag.path) %>"># <%= tag.name %></a><% }); %></div><% } %></div>
+  <a class="post-arrow" href="<%- url_for(post.path) %>" aria-label="阅读：<%= post.title %>"><%- icon('diagonal') %></a>
+</article>

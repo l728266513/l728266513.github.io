@@ -1,0 +1,30 @@
+{
+  "name": "ember-diary",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ember — 一些日常，一些心事。",
+  "engines": { "node": ">=20.19.0" },
+  "scripts": {
+    "dev": "node tools/diary.cjs prepare && hexo clean && hexo server --ip 127.0.0.1",
+    "build": "node tools/diary.cjs prepare && hexo clean && hexo generate",
+    "preview": "hexo server --static --ip 127.0.0.1",
+    "new": "node tools/diary.cjs new",
+    "diary:encrypt": "node tools/diary.cjs encrypt",
+    "diary:restore": "node tools/diary.cjs restore",
+    "diary:password": "node tools/diary.cjs password",
+    "check": "node tools/check-site.cjs && node tools/check-privacy.cjs",
+    "test": "node tools/diary.test.cjs"
+  },
+  "hexo": { "version": "8.1.1" },
+  "dependencies": {
+    "hexo": "8.1.1",
+    "hexo-generator-archive": "2.0.0",
+    "hexo-generator-index": "4.0.0",
+    "hexo-generator-tag": "2.0.0",
+    "hexo-renderer-ejs": "2.0.0",
+    "hexo-renderer-marked": "7.0.1",
+    "hexo-server": "3.0.0",
+    "hexo-util": "4.0.0",
+    "js-yaml": "4.3.2"
+  }
+}

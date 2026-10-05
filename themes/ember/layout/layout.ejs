@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <%- partial('_partial/head') %>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <%- partial('_partial/header') %>
+  <main id="main" class="site-main shell" tabindex="-1"><%- body %></main>
+  <%- partial('_partial/footer') %>
+  <%- partial('_partial/search') %>
+  <button class="back-to-top icon-button" type="button" aria-label="回到顶部" hidden><%- icon('up') %></button>
+  <script src="<%- url_for('/js/main.js') %>" defer></script>
+</body>
+</html>

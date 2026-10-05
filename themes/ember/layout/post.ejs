@@ -1,0 +1,22 @@
+<article class="reading-page">
+  <a class="text-link back-link" href="<%- url_for('/') %>"><%- icon('back') %> 回到文字</a>
+  <header class="article-header"><div class="eyebrow"><%= page.categories.length ? page.categories.first().name : '日记' %><span class="eyebrow-line"></span>NOTES FROM LIFE</div><h1><%= page.title %></h1><div class="article-meta"><time datetime="<%= page.date.toISOString() %>"><%= date(page.date, 'YYYY 年 M 月 D 日') %></time><span>·</span><span><%= reading_stats(page).words %> 字</span><span>·</span><span><%= reading_stats(page).minutes %> 分钟阅读</span><span>·</span><span class="page-views">浏览 <strong id="busuanzi_value_page_pv">—</strong> 次</span></div></header>
+  <div class="protected-article">
+    <section class="article-gate" aria-labelledby="unlock-title">
+      <div class="card-eyebrow"><%- icon('lock') %><span>PRIVATE NOTE</span></div>
+      <h2 id="unlock-title">这篇日记被锁住了</h2>
+      <p>输入密码后，打开这一页的文字。</p>
+      <form class="unlock-form">
+        <label for="post-password">日记密码</label>
+        <div class="unlock-input-row"><input id="post-password" name="password" type="password" autocomplete="current-password" maxlength="256" required><button type="submit">打开日记 <%- icon('arrow') %></button></div>
+        <p class="unlock-message" role="status" aria-live="polite"></p>
+      </form>
+      <noscript><p class="unlock-noscript">请启用 JavaScript 后输入密码阅读。</p></noscript>
+    </section>
+    <template id="protected-content"><%- JSON.stringify(page.encrypted) %></template>
+    <div class="article-body prose" id="more" hidden></div>
+  </div>
+  <div class="article-end"><span></span><%- icon('leaf') %><span></span></div>
+  <footer class="article-footer"><div class="tag-list"><% page.tags.each(function(tag) { %><a class="tag-pill" href="<%- url_for(tag.path) %>"># <%= tag.name %></a><% }); %></div><button class="copy-link text-link" type="button" hidden><%- icon('copy') %><span>复制链接</span></button><span class="visually-hidden" id="copy-status" role="status"></span></footer>
+  <nav class="post-navigation" aria-label="相邻文章"><div><% if (page.prev) { %><a href="<%- url_for(page.prev.path) %>"><span>← 新一篇</span><strong><%= page.prev.title %></strong></a><% } else { %><span class="end-of-journal">已经是最新的一页</span><% } %></div><div><% if (page.next) { %><a href="<%- url_for(page.next.path) %>"><span>旧一篇 →</span><strong><%= page.next.title %></strong></a><% } else { %><span class="end-of-journal">故事从这里开始</span><% } %></div></nav>
+</article>
