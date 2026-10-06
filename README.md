@@ -34,9 +34,10 @@ git status
 git add source/_posts
 git commit -m "发布新日记"
 git push origin source
+git push origin source:main
 ```
 
-如果还修改了网站代码或公开图片，请一并提交。`public/` 是被忽略的生成目录，不要手动编辑或提交。GitHub Actions 在 `source` 分支推送后构建并发布到 GitHub Pages；远端无需、也不应保存 `.private/` 或密码。下载仓库后即使没有本机原文，也能直接用已有密文构建网站。
+如果还修改了网站代码或公开图片，请一并提交。`public/` 是被忽略的生成目录，不要手动编辑或提交。GitHub Actions 在 `main` 分支推送后构建并发布到 GitHub Pages；只推送 `source` 不会更新网站。远端无需、也不应保存 `.private/` 或密码。下载仓库后即使没有本机原文，也能直接用已有密文构建网站。
 
 新设备需要先通过私下渠道取得阅读密码，再把它写入 `.private/reading-password.txt`（只写一行）。运行 `npm.cmd run diary:restore` 可从密文恢复完整 Markdown 到 `.private/posts/`，不会覆盖已有但内容不同的本机文件。密码文件和原文目录都应有单独备份：忘记密码后无法从密文恢复日记。
 
